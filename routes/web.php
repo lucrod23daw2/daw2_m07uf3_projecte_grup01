@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControladorAuto;
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('inici');
     });
+
+Route::resource('autos', ControladorAuto::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -23,7 +26,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-use App\Models\Auto;
+/*use App\Models\Auto;
 
 Route::post('/afegirAuto', function () {
     $dades= array("matricula_auto" => "2345KJL",
@@ -37,4 +40,4 @@ Route::post('/afegirAuto', function () {
     "combustible" => "gasolina");
     
     Auto::create($dades);
-});
+});*/
