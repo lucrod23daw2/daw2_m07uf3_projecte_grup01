@@ -1,22 +1,29 @@
 <?php
-
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorAuto;
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 Route::get('/', function () {
     return view('inici');
-    });
+});
 
-Route::resource('autos', ControladorAuto::class);
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::resource('autos', ControladorAuto::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,19 +32,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-/*use App\Models\Auto;
-
-Route::post('/afegirAuto', function () {
-    $dades= array("matricula_auto" => "2345KJL",
-    "num_bastidor" => "KN34567890123456",
-    "marca" => "Seat",
-    "model" => "Ibiza",
-    "color" => "Rojo",
-    "places" => "5",
-    "portes" => "5",
-    "gran_maleter" => "150x230cm",
-    "combustible" => "gasolina");
-    
-    Auto::create($dades);
-});*/

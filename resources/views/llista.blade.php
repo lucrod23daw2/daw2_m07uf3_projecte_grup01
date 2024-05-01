@@ -6,31 +6,34 @@
  <thead>
  <tr class="table-primary">
  <td>Matricula</td>
- <td>Número bastidor</td>
  <td>Marca</td>
  <td>Model</td>
- <td>Color</td>
- <td>Places</td>
- <td>Portes</td>
- <td>Mides maleter</td>
- <td>Combustible</td>
+ <td>Accions</td>
  </tr>
  </thead>
  <tbody>
  @foreach($dades_autos as $autos)
  <tr>
  <td>{{$autos->matricula_auto}}</td>
- <td>{{$autos->num_bastidor}}</td>
  <td>{{$autos->marca}}</td>
  <td>{{$autos->model}}</td>
- <td>{{$autos->color}}</td>
- <td>{{$autos->places}}</td>
- <td>{{$autos->portes}}</td>
- <td>{{$autos->gran_maleter}}</td>
- <td>{{$autos->combustible}}</td>
+ <td class="text-left">
+    <form action="{{ route('autos.destroy', $auto->matricula_auto)}}" method="post" style="display: inline-block">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-danger btn-sm" type="submit">
+            Esborra
+        </button>
+    </form>
+    <a href="{{ route('autos.edit', $auto->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
+    <a href="{{ route('autos.show', $auto->matricula_auto)}}" class="btn btn-info btn-sm">Mostra</a>
+</td>
  </tr>
  @endforeach
  </tbody>
  </table>
 <div>
+<div class="p-6 bg-white border-b border-gray-200">
+    <a href="{{ url('dashboard') }}">Torna al dashboard<a/>
+</div>
 @endsection
