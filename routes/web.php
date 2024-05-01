@@ -22,3 +22,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+use App\Models\Auto;
+
+Route::post('/afegirAuto', function () {
+    $dades= array("matricula_auto" => "2345KJL",
+    "num_bastidor" => "KN34567890123456",
+    "marca" => "Seat",
+    "model" => "Ibiza",
+    "color" => "Rojo",
+    "places" => "5",
+    "portes" => "5",
+    "gran_maleter" => "150x230cm",
+    "combustible" => "gasolina");
+    
+    Auto::create($dades);
+});
