@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->string('dni_client',9);
+            $table->string('dni_client',9)->unique();
             $table->primary('dni_client');
             $table->string('nom_cognoms',50);
             $table->integer('edat');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('punts_permis_conduccio');
             $table->enum('tipus_targeta', ['Dèbit', 'Crèdit']);
             $table->integer('num_targeta');
-	        $table->timestamps();
+            $table->timestamps();
         });
     }
 

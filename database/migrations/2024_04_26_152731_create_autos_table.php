@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('autos', function (Blueprint $table) {
-            $table->string('matricula_auto',7);
+            $table->string('matricula_auto',7)->unique();
             $table->primary('matricula_auto');
             $table->string('num_bastidor',17);
             $table->string('marca',20);

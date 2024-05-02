@@ -37,7 +37,7 @@ class ControladorAuto extends Controller
             'gran_maleter' => 'required',
             'combustible' => 'required',
         ]);
-        $auto = Treballador::create($nouAuto);
+        $auto = Auto::create($nouAuto);
         return view('dashboard');
     }
 

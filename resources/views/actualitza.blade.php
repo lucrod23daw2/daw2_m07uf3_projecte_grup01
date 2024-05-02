@@ -14,7 +14,7 @@
             </ul>
         </div>
         @endif
-        <form method="post" action="{{ route('autos.update', $dades_autos->matricula_auto) }}">
+        <form method="post" action="{{ route('autos.update', $dades_auto->matricula_auto) }}">
 			@csrf
             @method('PATCH')
             <div class="form-group">           
@@ -61,5 +61,5 @@
         </form>    
     </div>
 </div>
-<br><a href="{{ url('autos') }}">Accés directe a la Llista d'empleats</a
+<br><a href="{{ url('autos') }}">Torna a la llista d'autos</a
 @endsection
