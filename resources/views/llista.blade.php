@@ -12,12 +12,14 @@
  </tr>
  </thead>
  <tbody>
- @foreach($dades_autos as $autos)
+ @foreach($dades_autos as $auto)
  <tr>
- <td>{{$autos->matricula_auto}}</td>
- <td>{{$autos->marca}}</td>
- <td>{{$autos->model}}</td>
+ <td>{{$auto->matricula_auto}}</td>
+ <td>{{$auto->marca}}</td>
+ <td>{{$auto->model}}</td>
  <td class="text-left">
+    <a href="{{ route('autos.edit', $auto->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
+    <a href="{{ route('autos.show', $auto->matricula_auto)}}" class="btn btn-info btn-sm">Mostra</a>
     <form action="{{ route('autos.destroy', $auto->matricula_auto)}}" method="post" style="display: inline-block">
         @csrf
         @method('DELETE')
@@ -25,8 +27,6 @@
             Esborra
         </button>
     </form>
-    <a href="{{ route('autos.edit', $auto->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
-    <a href="{{ route('autos.show', $auto->matricula_auto)}}" class="btn btn-info btn-sm">Mostra</a>
 </td>
  </tr>
  @endforeach

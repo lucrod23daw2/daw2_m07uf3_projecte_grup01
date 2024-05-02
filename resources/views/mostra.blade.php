@@ -1,6 +1,6 @@
 @extends('disseny')
 @section('content')
-<h1>Dades del treballador</h1>
+<h1>Dades del auto</h1>
 <div class="mt-5">
   <table class="table table-striped table-bordered table-hover">
 	<thead class="thead-dark">
