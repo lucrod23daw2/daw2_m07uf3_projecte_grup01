@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Client;
 
 class ControladorClient extends Controller
 {
@@ -11,7 +12,8 @@ class ControladorClient extends Controller
      */
     public function index()
     {
-        //
+        $dades_client = Client::all();
+        return view('llistaclients', compact('dades_client'));
     }
 
     /**
@@ -19,46 +21,78 @@ class ControladorClient extends Controller
      */
     public function create()
     {
-        //
+        return view('creaclient');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $nouClient = $request->validate([
+            'dni_client' => 'required',
+            'nom_cognoms' => 'required',
+            'edat' => 'required',
+            'telefon' => 'required',
+            'adreca' => 'required',
+            'ciutat' => 'required',
+            'pais' => 'required',
+            'email' => 'required',
+            'num_permis_conduccio' => 'required',
+            'punts_permis_conduccio' => 'required',
+            'tipus_targeta' => 'required',
+            'num_targeta' => 'required',
+        ]);
+        
+        $client = Client::create($nouClient);
+        return view('dashboard');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $dni_client)
     {
-        //
+        $dades_client = Client::findOrFail($dni_client);
+        return view('mostraclient',compact('dades_client'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $dni_client)
     {
-        //
+        $dades_client = Client::findOrFail($dni_client);
+        return view('actualitzaclient',compact('dades_client'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza el recurso especificado en el almacenamiento.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $dni_client)
     {
-        //
+        $noves_dades_client = $request->validate([
+            'dni_client' => 'required',
+            'nom_cognoms' => 'required',
+            'edat' => 'required',
+            'telefon' => 'required',
+            'adreca' => 'required',
+            'ciutat' => 'required',
+            'pais' => 'required',
+            'email' => 'required',
+            'num_permis_conduccio' => 'required',
+            'punts_permis_conduccio' => 'required',
+            'tipus_targeta' => 'required',
+            'num_targeta' => 'required',
+        ]);
+        
+        Client::findOrFail($dni_client)->update($noves_dades_client);
+        return view('dashboard');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina el recurso especificado del almacenamiento.
      */
-    public function destroy(string $id)
+    public function destroy(string $dni_client)
     {
-        //
+        $client = Client::findOrFail($dni_client)->delete();
+        return view('dashboard');
     }
 }

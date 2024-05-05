@@ -53,10 +53,10 @@
         <div class="form-group">           
             <label for="combustible">Tipus de Combustible</label>
             <select name="combustible">
-			    <option value="gasolina">Gasolina</option>
-			    <option value="diesel">Diesel</option>	
+			          <option value="gasolina">Gasolina</option>
+			          <option value="diesel">Diesel</option>	
                 <option value="electric">Elèctric</option>		    
-			</select>
+			      </select>
         </div>
         <button type="submit" class="btn btn-block btn-primary">Envia</button>
     </form>    

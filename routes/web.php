@@ -2,6 +2,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorAuto;
+use App\Http\Controllers\ControladorClient;
+use App\Http\Controllers\ControladorLloga;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +24,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
+    Route::resource('clients', ControladorClient::class);
     Route::resource('autos', ControladorAuto::class);
+    Route::resource('lloguers', ControladorLloga::class);
 });
 
 Route::middleware('auth')->group(function () {

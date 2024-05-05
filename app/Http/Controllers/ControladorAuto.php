@@ -75,7 +75,7 @@ class ControladorAuto extends Controller
             'gran_maleter' => 'required',
             'combustible' => 'required',
         ]);
-        Auto::findOrFail($tid)->update($noves_dades_auto);
+        Auto::findOrFail($matricula_auto)->update($noves_dades_auto);
         return view('dashboard');
     }
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->primary('dni_client');
             $table->string('nom_cognoms',50);
             $table->integer('edat');
-            $table->integer('telefon');
+            $table->string('telefon');
             $table->string('adreca',30);
             $table->string('ciutat',30);
             $table->string('pais',30);
