@@ -20,7 +20,7 @@
     <td class="text-left">
         <a href="{{ route('clients.edit', $client->dni_client)}}" class="btn btn-primary btn-sm">Edita</a>
         <a href="{{ route('clients.show', $client->dni_client)}}" class="btn btn-info btn-sm">Mostra</a>
-        <a href="{{ route('clients.show', $client->dni_client)}}" class="btn btn-secondary btn-sm">PDF</a>
+        <a href="{{ route('clients.pdf', $client->dni_client)}}" class="btn btn-secondary btn-sm">PDF</a>
         <form action="{{ route('clients.destroy', $client->dni_client)}}" method="post" style="display: inline-block">
             @csrf
             @method('DELETE')

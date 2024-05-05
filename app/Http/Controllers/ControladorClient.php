@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ControladorClient extends Controller
 {
@@ -94,5 +96,20 @@ class ControladorClient extends Controller
     {
         $client = Client::findOrFail($dni_client)->delete();
         return view('dashboard');
+    }
+
+    public function pdf(string $dni_client)
+    {
+        $dades_client = Client::findOrFail($dni_client);
+
+        // Configuració Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $dompdf = new Dompdf($options);
+        $html = view('pdfclient', compact('dades_client'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        return $dompdf->stream("client_" . $dni_client . ".pdf");
     }
 }
