@@ -20,7 +20,7 @@
  <td class="text-left">
     <a href="{{ route('autos.edit', $auto->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
     <a href="{{ route('autos.show', $auto->matricula_auto)}}" class="btn btn-info btn-sm">Mostra</a>
-    <a href="{{ route('autos.show', $auto->matricula_auto)}}" class="btn btn-secondary btn-sm">PDF</a>
+    <a href="{{ route('autos.pdf', $auto->matricula_auto)}}" class="btn btn-secondary btn-sm">PDF</a>
     <form action="{{ route('autos.destroy', $auto->matricula_auto)}}" method="post" style="display: inline-block">
         @csrf
         @method('DELETE')

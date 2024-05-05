@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Auto;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ControladorAuto extends Controller
 {
@@ -86,5 +88,20 @@ class ControladorAuto extends Controller
     {
         $auto = Auto::findOrFail($matricula_auto)->delete();
         return view('dashboard');
+    }
+
+    public function pdf(string $matricula_auto)
+    {
+        $dades_auto = Auto::findOrFail($matricula_auto);
+
+        // Configuració Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $dompdf = new Dompdf($options);
+        $html = view('pdf', compact('dades_auto'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        return $dompdf->stream("auto" . $matricula_auto . ".pdf");
     }
 }
