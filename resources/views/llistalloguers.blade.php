@@ -15,10 +15,9 @@
         <td>{{$lloguer->dni_client}}</td>
         <td>{{$lloguer->matricula_auto}}</td>
         <td class="text-left">
-        <a href="{{ route('lloguers.edit', ['dni_client' => $lloguer->dni_client, 'matricula_auto' => $lloguer->matricula_auto]) }}" class="btn btn-primary btn-sm">Edita</a>
-        <a href="{{ route('lloguers.show', ['dni_client' => $lloguer->dni_client, 'matricula_auto' => $lloguer->matricula_auto]) }}" class="btn btn-info btn-sm">Mostra</a>
-        <a href="{{ route('lloguers.show', ['dni_client' => $lloguer->dni_client, 'matricula_auto' => $lloguer->matricula_auto]) }}" class="btn btn-secondary btn-sm">PDF</a>
-        <form action="{{ route('lloguers.destroy', ['dni_client' => $lloguer->dni_client, 'matricula_auto' => $lloguer->matricula_auto]) }}" method="post" style="display: inline-block">
+        <a href="{{ route('lloguers.edit', [$client->dni_client, $auto->matricula_auto])}}" class="btn btn-primary btn-sm">Edita</a>
+        <a href="{{ route('lloguers.show', [$client->dni_client, $auto->matricula_auto])}}" class="btn btn-secondary btn-sm">PDF</a>
+        <form action="{{ route('lloguers.destroy', [$client->dni_client, $auto->matricula_auto]) }}" method="post" style="display: inline-block">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger btn-sm" type="submit">

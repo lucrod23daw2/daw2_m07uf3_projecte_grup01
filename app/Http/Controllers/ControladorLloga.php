@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lloga;
+use App\Models\Auto;
+use App\Models\Client;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -48,7 +50,10 @@ class ControladorLloga extends Controller
     public function show(string $dni_client, string $matricula_auto)
     {
         $dades_lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
-        return view('mostralloguer', compact('dades_lloguer'));
+        $client = Client::where('dni_client', $dni_client)->firstOrFail();
+        $auto = Auto::where('matricula_auto', $matricula_auto)->firstOrFail();
+
+        return view('mostralloguer', compact('dades_lloguer', 'client', 'auto'));
     }
 
     /**

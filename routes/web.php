@@ -27,6 +27,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/clients/{dni_client}/pdf', [ControladorClient::class, 'pdf'])->name('clients.pdf');
     Route::get('/autos/{matricula_auto}/pdf', [ControladorAuto::class, 'pdf'])->name('autos.pdf');
     Route::get('/lloguers/{dni_client}/{matricula_auto}/pdf', [ControladorLloga::class, 'pdf'])->name('lloguers.pdf');
+    Route::get('/lloguers/{dni_client}/{matricula_auto}/edit', 'ControladorLloga@edit')->name('lloguers.edit');
+    Route::get('/lloguers/{dni_client}/{matricula_auto}', 'ControladorLloga@show')->name('lloguers.show');
+    Route::delete('/lloguers/{dni_client}/{matricula_auto}', 'ControladorLloga@destroy')->name('lloguers.destroy');
     Route::resource('clients', ControladorClient::class);
     Route::resource('autos', ControladorAuto::class);
     Route::resource('lloguers', ControladorLloga::class);
