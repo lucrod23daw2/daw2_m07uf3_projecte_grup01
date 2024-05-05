@@ -22,10 +22,10 @@
                 </div>
                 </div>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ url('lloga') }}"><b>Lloguers → </b>Visualitzar, actualitzar i esborrar<a/>
+                    <a href="{{ url('lloguers') }}"><b>Lloguers → </b>Visualitzar, actualitzar i esborrar<a/>
                 </div>
                 <div class="p-6 text-gray-900">
-                <a href="{{ url('lloga/create') }}"><b>Lloguers → </b>Afegir lloguer<a/>
+                <a href="{{ url('lloguers/create') }}"><b>Lloguers → </b>Afegir lloguer<a/>
                 </div>
             </div>
         </div>

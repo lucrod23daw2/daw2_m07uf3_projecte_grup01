@@ -2,7 +2,7 @@
 @section('content')
 <div class="card mt-5">
   <div class="card-header">
-    Afegeix un nou Client
+    Afegeix un nou Lloguer
   </div>
 
   <div class="card-body">
@@ -36,31 +36,26 @@
         </div>
         <div class="form-group">           
             <label for="lloc_devolucio">Lloc devolucio</label>
-            <input type="date" class="form-control" name="lloc_devolucio"/>
+            <input type="string" class="form-control" name="lloc_devolucio"/>
         </div>
         <div class="form-group">           
             <label for="preu_per_dia">Preu per dia</label>
-            <input type="text" class="form-control" name="preu_per_dia"/>
+            <input type="float" class="form-control" name="preu_per_dia"/>
         </div>        
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email"/>
-        </div>
-        <div class="form-group">
-            <label for="retorn_deposit_ple">Retorn deposit ple</label>
-            <input type="text" class="form-control" name="retorn_deposit_ple"/>
-        </div>
-        <div class="form-group">           
-            <label for="punts_del_permis">Punts del permis</label>
-            <input type="number" class="form-control" name="punts_del_permis"/>
-        </div>
-        <div class="form-group">           
-            <label for="tipus_targeta">Tipus targeta</label>
-            <input type="text" class="form-control" name="tipus_targeta"/>
+            <label for="retorn_deposit_ple">Retorn amb deposit ple</label>
+            <select name="retorn_deposit_ple">
+			    <option value="true">Sí</option>
+                <option value="false">No</option>
+            </select>
         </div>
         <div class="form-group">           
             <label for="asseguranca">Asseguranca</label>
-            <input type="number" class="form-control" name="asseguranca"/>            
+            <select name="asseguranca">
+			    <option value="Franquicia fin 1000€">Franquicia fin 1000€</option>
+                <option value="Franquicia fin 500€">Franquicia fin 500€</option>
+                <option value="Sense franquicia">Sense franquicia</option>	  	    
+            </select>
         </div>
              
         <button type="submit" class="btn btn-block btn-primary">Envia</button>

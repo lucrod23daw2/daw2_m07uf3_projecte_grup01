@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function(){
     })->name('dashboard');
     Route::get('/clients/{dni_client}/pdf', [ControladorClient::class, 'pdf'])->name('clients.pdf');
     Route::get('/autos/{matricula_auto}/pdf', [ControladorAuto::class, 'pdf'])->name('autos.pdf');
-    //Route::get('/loguers/{?????????}/pdf', [ControladorLloga::class, 'pdf'])->name('loguers.pdf');
+    Route::get('/lloguers/{dni_client}/{matricula_auto}/pdf', [ControladorLloga::class, 'pdf'])->name('lloguers.pdf');
     Route::resource('clients', ControladorClient::class);
     Route::resource('autos', ControladorAuto::class);
     Route::resource('lloguers', ControladorLloga::class);

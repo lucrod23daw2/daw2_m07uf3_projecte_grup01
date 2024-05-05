@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lloga;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ControladorLloga extends Controller
 {
@@ -27,8 +29,8 @@ class ControladorLloga extends Controller
     public function store(Request $request)
     {
         $nouLloguer = $request->validate([
-            'dni_client' => 'required',
-            'matricula_auto' => 'required',
+            'dni_client' => 'required|exists:clients,dni_client',
+            'matricula_auto' => 'required|exists:autos,matricula_auto',
             'data_prestec' => 'required',
             'data_devolucio' => 'required',
             'lloc_devolucio' => 'required',
@@ -36,7 +38,7 @@ class ControladorLloga extends Controller
             'retorn_deposit_ple' => 'required',
             'asseguranca' => 'required',
         ]);
-        $Lloguer = Lloga::create($nouLloguer);
+        $lloguer = Lloga::create($nouLloguer);
         return view('dashboard');
     }
 
@@ -45,8 +47,8 @@ class ControladorLloga extends Controller
      */
     public function show(string $dni_client, string $matricula_auto)
     {
-        $lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
-        return view('mostralloguer', compact('lloguer'));
+        $dades_lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
+        return view('mostralloguer', compact('dades_lloguer'));
     }
 
     /**
@@ -54,13 +56,13 @@ class ControladorLloga extends Controller
      */
     public function edit(string $dni_client, string $matricula_auto)
     {
-        $lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
-        return view('actualitzalloguer', compact('lloguer'));
+        $dades_lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
+        return view('actualitzalloguer', compact('dades_lloguer'));
     }
 
     public function update(Request $request, string $dni_client, string $matricula_auto)
     {
-        $noves_dades_lloguer=$request->validate([
+        $noves_dades_lloguer = $request->validate([
             'data_prestec' => 'required',
             'data_devolucio' => 'required',
             'lloc_devolucio' => 'required',
@@ -81,5 +83,20 @@ class ControladorLloga extends Controller
         $lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
         $lloguer->delete();
         return view('dashboard');
+    }
+
+    public function pdf(string $dni_client, string $matricula_auto)
+    {
+        $dades_lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
+
+        // Configuració Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $dompdf = new Dompdf($options);
+        $html = view('pdf', compact('dades_lloguer'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        return $dompdf->stream("lloguer" . $matricula_auto . "-" . $dni_client .".pdf");
     }
 }
