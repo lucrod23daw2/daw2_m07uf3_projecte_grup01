@@ -2,7 +2,7 @@
 @section('content')
 <div class="card mt-5">
   <div class="card-header">
-    Afegeix un nou Lloguer
+    Afegeix un nou lloguer
   </div>
 
   <div class="card-body">
@@ -45,8 +45,8 @@
         <div class="form-group">
             <label for="retorn_deposit_ple">Retorn amb deposit ple</label>
             <select name="retorn_deposit_ple">
-			    <option value="true">Sí</option>
-                <option value="false">No</option>
+			    <option value="1">Sí</option>
+                <option value="0">No</option>
             </select>
         </div>
         <div class="form-group">           
