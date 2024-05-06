@@ -72,5 +72,5 @@
         </form>    
     </div>
 </div>
-<br><a href="{{ url('autos') }}">Torna a la llista d'autos</a
+<br><a href="{{ url('clients') }}">Torna a la llista de clients</a
 @endsection

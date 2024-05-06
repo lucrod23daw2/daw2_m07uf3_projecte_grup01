@@ -57,7 +57,6 @@
                 <option value="Sense franquicia">Sense franquicia</option>	  	    
             </select>
         </div>
-             
         <button type="submit" class="btn btn-block btn-primary">Envia</button>
     </form>    
   </div>

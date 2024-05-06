@@ -7,6 +7,7 @@
  <tr class="table-primary">
  <td>Dni</td>
  <td>Matricula</td>
+ <td>Accions</td>
  </tr>
  </thead>
  <tbody>
@@ -15,9 +16,10 @@
         <td>{{$lloguer->dni_client}}</td>
         <td>{{$lloguer->matricula_auto}}</td>
         <td class="text-left">
-        <a href="{{ route('lloguers.edit', [$client->dni_client, $auto->matricula_auto])}}" class="btn btn-primary btn-sm">Edita</a>
-        <a href="{{ route('lloguers.show', [$client->dni_client, $auto->matricula_auto])}}" class="btn btn-secondary btn-sm">PDF</a>
-        <form action="{{ route('lloguers.destroy', [$client->dni_client, $auto->matricula_auto]) }}" method="post" style="display: inline-block">
+        <a href="{{ route('lloguers.edit', $lloguer->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
+        <a href="{{ route('lloguers.show', $lloguer->matricula_auto)}}" class="btn btn-info btn-sm">Mostra</a>
+        <a href="{{ route('lloguers.show', $lloguer->matricula_auto)}}" class="btn btn-secondary btn-sm">PDF</a>
+        <form action="{{ route('lloguers.destroy', $lloguer->matricula_auto)}}" method="post" style="display: inline-block">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger btn-sm" type="submit">

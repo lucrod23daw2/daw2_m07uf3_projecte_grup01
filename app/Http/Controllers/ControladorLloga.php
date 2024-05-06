@@ -47,25 +47,24 @@ class ControladorLloga extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $dni_client, string $matricula_auto)
+    public function show(string $matricula_auto)
     {
-        $dades_lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
-        $client = Client::where('dni_client', $dni_client)->firstOrFail();
+        $dades_lloguer = Lloga::findOrFail($matricula_auto);
         $auto = Auto::where('matricula_auto', $matricula_auto)->firstOrFail();
 
-        return view('mostralloguer', compact('dades_lloguer', 'client', 'auto'));
+        return view('mostralloguers', compact('dades_lloguer', 'auto'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $dni_client, string $matricula_auto)
+    public function edit(string $matricula_auto)
     {
-        $dades_lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
+        $dades_lloguer = Lloga::findOrFail($matricula_auto);
         return view('actualitzalloguer', compact('dades_lloguer'));
     }
 
-    public function update(Request $request, string $dni_client, string $matricula_auto)
+    public function update(Request $request, string $matricula_auto)
     {
         $noves_dades_lloguer = $request->validate([
             'data_prestec' => 'required',
@@ -75,24 +74,22 @@ class ControladorLloga extends Controller
             'retorn_deposit_ple' => 'required',
             'asseguranca' => 'required',
         ]);
-        $lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
-        $lloguer->update($noves_dades_lloguer);
+        $lloguer = Lloga::findOrFail($matricula_auto)->update($noves_dades_lloguer);
         return view('dashboard');
     }
 
     /**
      * Elimina el registro de alquiler especificado de la base de datos.
      */
-    public function destroy(string $dni_client, string $matricula_auto)
+    public function destroy(string $matricula_auto)
     {
-        $lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
-        $lloguer->delete();
+        $lloguer = Lloga::findOrFail($matricula_auto)->delete();
         return view('dashboard');
     }
 
-    public function pdf(string $dni_client, string $matricula_auto)
+    public function pdf(string $matricula_auto)
     {
-        $dades_lloguer = Lloga::where('dni_client', $dni_client)->where('matricula_auto', $matricula_auto)->firstOrFail();
+        $dades_lloguer = Lloga::findOrFail($matricula_auto);
 
         // Configuració Dompdf
         $options = new Options();
@@ -102,6 +99,6 @@ class ControladorLloga extends Controller
         $dompdf->loadHtml($html);
         $dompdf->render();
 
-        return $dompdf->stream("lloguer" . $matricula_auto . "-" . $dni_client .".pdf");
+        return $dompdf->stream("lloguer" . $matricula_auto. ".pdf");
     }
 }
