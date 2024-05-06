@@ -20,7 +20,6 @@
                 <div class="p-6 text-gray-900">
                 <a href="{{ url('clients/create') }}"><b>Clients → </b>Afegir clients<a/>
                 </div>
-                </div>
                 <div class="p-6 bg-white border-b border-gray-200">
                     <a href="{{ url('lloguers') }}"><b>Lloguers → </b>Visualitzar, actualitzar i esborrar<a/>
                 </div>

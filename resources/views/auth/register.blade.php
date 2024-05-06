@@ -39,6 +39,15 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- Tipus -->
+        <div class="mt-4">
+            <x-input-label for="tipus" :value="__('User Type')" />
+            <select id="tipus" name="tipus" class="block mt-1 w-full">
+                <option value="treballador">Treballador</option>
+                <option value="cap de departament">Cap de Departament</option>
+            </select>
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
@@ -49,4 +58,7 @@
             </x-primary-button>
         </div>
     </form>
+    <div class="p-6 bg-white border-b border-gray-200">
+        <a href="{{ url('dashboard') }}">Torna al dashboard<a/>
+    </div>
 </x-guest-layout>
