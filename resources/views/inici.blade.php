@@ -6,15 +6,13 @@
 <title>Empresa</title>
 </head>
 <body>
-<div>Pàgina inicial de l'aplicació web Empresa</div>
+<div><b>Pàgina inicial de l'aplicació web RentByRent</b></div>
+<div>Benvingut a RentByRent, la teva pagina de confiaça de lloguer de cotxes.</div>
 @if (Route::has('login'))
 @auth
 <a href="{{ url('/dashboard') }}">Dashboard</a>
 @else
 <a href="{{ route('login') }}">Log in</a><br>
-@if (Route::has('register'))
-<a href="{{ route('register') }}">Register</a><br>
-@endif
 @endauth
 @endif
 </body>

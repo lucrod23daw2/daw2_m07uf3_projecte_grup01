@@ -18,6 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
         /*$middleware->validateCsrfTokens(except: [
             '/afegirAuto',
         ]);*/
+        $middleware->alias([
+            'adminAuth' => \App\Http\Middleware\AdmiminAuth::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->renderable(function(QueryException $exception) {

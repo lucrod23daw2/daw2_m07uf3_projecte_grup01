@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorAuto;
 use App\Http\Controllers\ControladorClient;
 use App\Http\Controllers\ControladorLloga;
+use App\Http\Controllers\ControladorUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/clients/{dni_client}/pdf', [ControladorClient::class, 'pdf'])->name('clients.pdf');
     Route::get('/autos/{matricula_auto}/pdf', [ControladorAuto::class, 'pdf'])->name('autos.pdf');
     Route::get('/lloguers/{matricula_auto}/pdf', [ControladorLloga::class, 'pdf'])->name('lloguers.pdf');
+    Route::get('/users/{email}/pdf', [ControladorUser::class, 'pdf'])->name('users.pdf');
     Route::resource('clients', ControladorClient::class);
     Route::resource('autos', ControladorAuto::class);
     Route::resource('lloguers', ControladorLloga::class);
+    Route::resource('users', ControladorUser::class);
 });
 
 Route::middleware('auth')->group(function () {
