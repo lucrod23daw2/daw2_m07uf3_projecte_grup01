@@ -67,6 +67,8 @@ class ControladorLloga extends Controller
     public function update(Request $request, string $matricula_auto)
     {
         $noves_dades_lloguer = $request->validate([
+            'dni_client' => 'required|exists:clients,dni_client',
+            'matricula_auto' => 'required|exists:autos,matricula_auto',
             'data_prestec' => 'required',
             'data_devolucio' => 'required',
             'lloc_devolucio' => 'required',
@@ -95,7 +97,7 @@ class ControladorLloga extends Controller
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $dompdf = new Dompdf($options);
-        $html = view('pdf', compact('dades_lloguer'))->render();
+        $html = view('pdflloguer', compact('dades_lloguer'))->render();
         $dompdf->loadHtml($html);
         $dompdf->render();
 
