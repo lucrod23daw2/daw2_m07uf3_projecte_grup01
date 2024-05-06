@@ -22,9 +22,14 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/dashboard', function () {
+    Route::group(['middleware' => 'adminAuth'], function(){
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+    });
+    /*Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('dashboard');*/
     Route::get('/dashboard-basic', function () {
         return view('dashboard-basic');
     })->name('dashboard-basic');

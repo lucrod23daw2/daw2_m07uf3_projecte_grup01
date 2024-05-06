@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             '/afegirAuto',
         ]);*/
         $middleware->alias([
-            'adminAuth' => \App\Http\Middleware\AdmiminAuth::class,
+            'adminAuth' => \App\Http\Middleware\AdminAuth::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

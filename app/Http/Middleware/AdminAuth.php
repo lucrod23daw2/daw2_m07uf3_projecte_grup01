@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdmiminAuth
+class AdminAuth
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class AdmiminAuth
     public function handle(Request $request, Closure $next): Response
     {
         if(Auth()->user()->tipus != "cap de departament"){
-            return redirect('dashboard-basic')->with('error','Error: usuari validat amb tipus treballador')
+            return redirect('dashboard-basic')->with('error','Error: usuari validat amb tipus treballador');
         }
         return $next($request);
     }
